@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Web-based note converter application called 'Scriptify Notes' - accepts screenshots, extracts text via OCR, applies handwriting-style rendering with randomization, converts images to sketch style, and generates downloadable PDFs. Built as a progressive web app using React frontend and Motoko backend on Internet Computer with Internet Identity authentication.",
+  "architectural_notes": [
+    "React + TypeScript frontend for cross-platform web compatibility",
+    "Motoko backend on Internet Computer for decentralized storage",
+    "Client-side OCR using Tesseract.js for text extraction",
+    "Canvas API for image-to-sketch conversion (edge detection, filters)",
+    "jsPDF or pdf-lib for client-side PDF generation",
+    "Internet Identity for passkey-based authentication",
+    "Progressive Web App approach for mobile browser support",
+    "File size limit: 10MB per upload"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Notebook paper texture background with subtle ruled lines for handwriting rendering (notebook-texture.dim_1200x1600.png)\n- Pencil sketch texture overlay for image-to-sketch conversion effect (pencil-texture.dim_800x800.png)\n- Application icon featuring a stylized handwritten note or pen illustration (app-icon.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-image-upload-interface-that-accepts-png-and-jpg-screenshot-files-with-maximum-file-size-of-10mb-and-validates-file-types-before-upload",
+      "title": "Implement image upload interface that accepts PNG and JPG screenshot files with maximum file size of 10MB and validates file types before upload",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-tesseract-js-for-client-side-ocr-to-extract-text-from-uploaded-screenshots-returning-structured-data-including-headings-paragraphs-lists-and-tables",
+      "title": "Integrate Tesseract.js for client-side OCR to extract text from uploaded screenshots, returning structured data including headings, paragraphs, lists, and tables",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-handwriting-rendering-engine-that-converts-extracted-text-into-realistic-handwritten-style-with-randomized-character-spacing-letter-rotation-between-2-and-2-baseline-shift-variations-and-stroke-thickness-changes",
+      "title": "Build handwriting rendering engine that converts extracted text into realistic handwritten style with randomized character spacing, letter rotation between -2° and +2°, baseline shift variations, and stroke thickness changes",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-handwriting-customization-ui-allowing-users-to-choose-between-blue-and-black-ink-colors-and-select-paper-backgrounds-including-ruled-paper-graph-paper-and-margin-lines",
+      "title": "Implement handwriting customization UI allowing users to choose between blue and black ink colors, and select paper backgrounds including ruled paper, graph paper, and margin lines",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a4-pdf-generation-at-300-dpi-using-jspdf-or-pdf-lib-that-combines-handwritten-text-rendering-and-converted-sketch-images-with-proper-multi-page-support-and-line-wrapping",
+      "title": "Implement A4 PDF generation at 300 DPI using jsPDF or pdf-lib that combines handwritten text rendering and converted sketch images with proper multi-page support and line wrapping",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-pdf-preview-screen-that-displays-the-generated-pdf-before-download-and-includes-a-download-button-for-saving-the-file-locally",
+      "title": "Create PDF preview screen that displays the generated PDF before download and includes a download button for saving the file locally",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-internet-identity-authentication-for-user-sign-in-replacing-google-sign-in-while-maintaining-secure-user-sessions",
+      "title": "Integrate Internet Identity authentication for user sign-in, replacing Google Sign-In while maintaining secure user sessions",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-note-history-interface-that-displays-user-s-previously-converted-notes-with-filenames-and-creation-timestamps",
+      "title": "Create note history interface that displays user's previously converted notes with filenames and creation timestamps",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-cohesive-visual-theme-with-warm-creative-colors-avoiding-blue-and-purple-notebook-inspired-typography-and-paper-texture-elements-that-reflect-the-handwritten-note-aesthetic-throughout-the-application-interface",
+      "title": "Design a cohesive visual theme with warm, creative colors (avoiding blue and purple), notebook-inspired typography, and paper texture elements that reflect the handwritten note aesthetic throughout the application interface",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Image upload functionality for screenshots (PNG/JPG)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Client-side OCR text extraction using Tesseract.js",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Handwriting-style text rendering with character randomization (spacing, rotation, baseline shift)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Image-to-sketch conversion using Canvas API filters (edge detection, grayscale, noise)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "PDF generation with handwritten text and sketch images using jsPDF/pdf-lib",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "PDF download functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Internet Identity authentication integration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Note storage in Motoko backend canister",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Create image region detection using Canvas API to segment diagram and image areas from text regions in uploaded screenshots",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Build image-to-sketch conversion pipeline using Canvas API that converts detected images to grayscale, applies Canny-style edge detection, applies adaptive threshold, removes digital colors, adds Gaussian noise, and overlays pencil texture to create hand-drawn appearance",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Build backend note storage system in Motoko that stores note metadata including user ID, filename, creation timestamp, and associates generated PDFs with user accounts",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Scriptify Notes",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

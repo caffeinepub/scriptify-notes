@@ -1,0 +1,310 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-20T06:12:51.009Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 12,
+    "implemented": 9,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Implement image upload interface that accepts PNG and JPG screenshot files with maximum file size of 10MB and validates file types before upload",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ImageUpload.tsx",
+          "frontend/src/utils/fileValidation.ts",
+          "frontend/src/pages/ConvertPage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ImageUpload.tsx",
+          "frontend/src/utils/fileValidation.ts",
+          "frontend/src/pages/ConvertPage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Build backend note storage system in Motoko that stores note metadata including user ID, filename, creation timestamp, and associates generated PDFs with user accounts",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Create note history interface that displays user's previously converted notes with filenames and creation timestamps",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/NoteHistory.tsx",
+          "frontend/src/hooks/useNotes.ts",
+          "frontend/src/pages/HistoryPage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/NoteHistory.tsx",
+          "frontend/src/pages/HistoryPage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Design a cohesive visual theme with warm, creative colors (avoiding blue and purple), notebook-inspired typography, and paper texture elements that reflect the handwritten note aesthetic throughout the application interface",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Integrate Tesseract.js for client-side OCR to extract text from uploaded screenshots, returning structured data including headings, paragraphs, lists, and tables",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/services/ocrService.ts",
+          "frontend/src/components/TextEditor.tsx",
+          "frontend/src/hooks/useOCR.ts",
+          "frontend/src/pages/ConvertPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/services/ocrService.ts",
+          "frontend/src/components/TextEditor.tsx",
+          "frontend/src/hooks/useOCR.ts",
+          "frontend/src/pages/ConvertPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Build handwriting rendering engine that converts extracted text into realistic handwritten style with randomized character spacing, letter rotation between -2° and +2°, baseline shift variations, and stroke thickness changes",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/services/handwritingRenderer.ts",
+          "frontend/src/utils/handwritingVariations.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/services/handwritingRenderer.ts",
+          "frontend/src/utils/handwritingVariations.ts"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Implement handwriting customization UI allowing users to choose between blue and black ink colors, and select paper backgrounds including ruled paper, graph paper, and margin lines",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/StyleCustomizer.tsx",
+          "frontend/src/types/handwritingStyles.ts",
+          "frontend/src/pages/ConvertPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/StyleCustomizer.tsx",
+          "frontend/src/types/handwritingStyles.ts",
+          "frontend/src/pages/ConvertPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Create image region detection using Canvas API to segment diagram and image areas from text regions in uploaded screenshots",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/services/imageSegmentation.ts",
+          "frontend/src/utils/regionDetection.ts"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Build image-to-sketch conversion pipeline using Canvas API that converts detected images to grayscale, applies Canny-style edge detection, applies adaptive threshold, removes digital colors, adds Gaussian noise, and overlays pencil texture to create hand-drawn appearance",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/services/sketchConverter.ts",
+          "frontend/src/utils/imageFilters.ts"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Implement A4 PDF generation at 300 DPI using jsPDF or pdf-lib that combines handwritten text rendering and converted sketch images with proper multi-page support and line wrapping",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/services/pdfGenerator.ts",
+          "frontend/src/utils/pdfLayout.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/services/pdfGenerator.ts"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Create PDF preview screen that displays the generated PDF before download and includes a download button for saving the file locally",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/PDFPreview.tsx",
+          "frontend/src/utils/fileDownload.ts",
+          "frontend/src/hooks/useSaveNote.ts",
+          "frontend/src/pages/ConvertPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/PDFPreview.tsx",
+          "frontend/src/utils/fileDownload.ts",
+          "frontend/src/pages/ConvertPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Integrate Internet Identity authentication for user sign-in, replacing Google Sign-In while maintaining secure user sessions",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/LoginButton.tsx",
+          "frontend/src/components/ProfileSetup.tsx",
+          "frontend/src/hooks/useAuth.ts",
+          "frontend/src/components/ProtectedRoute.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/LoginButton.tsx",
+          "frontend/src/components/ProfileSetup.tsx",
+          "frontend/src/components/ProtectedRoute.tsx",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/app-icon.dim_512x512.png",
+    "frontend/public/assets/generated/notebook-texture.dim_1200x1600.png",
+    "frontend/public/assets/generated/pencil-texture.dim_800x800.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/ImageUpload.tsx",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/components/LoginButton.tsx",
+    "frontend/src/components/NoteHistory.tsx",
+    "frontend/src/components/PDFPreview.tsx",
+    "frontend/src/components/ProfileSetup.tsx",
+    "frontend/src/components/ProtectedRoute.tsx",
+    "frontend/src/components/StyleCustomizer.tsx",
+    "frontend/src/components/TextEditor.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useOCR.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/ConvertPage.tsx",
+    "frontend/src/pages/HistoryPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/services/handwritingRenderer.ts",
+    "frontend/src/services/ocrService.ts",
+    "frontend/src/services/pdfGenerator.ts",
+    "frontend/src/types/handwritingStyles.ts",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/fileDownload.ts",
+    "frontend/src/utils/fileValidation.ts",
+    "frontend/src/utils/handwritingVariations.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

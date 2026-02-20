@@ -1,0 +1,323 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Scriptify Notes - Frontend Implementation Plan",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement image upload interface with file validation for PNG/JPG files up to 10MB",
+      "acceptanceCriteria": [
+        "User can select and upload PNG or JPG files",
+        "File size validation rejects files larger than 10MB",
+        "Invalid file types are rejected with clear error messages",
+        "Upload interface shows file preview before processing"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageUpload.tsx",
+          "operation": "create",
+          "description": "Create image upload component with drag-and-drop support, file type validation (PNG/JPG only), 10MB size limit enforcement, and file preview display before processing"
+        },
+        {
+          "path": "frontend/src/utils/fileValidation.ts",
+          "operation": "create",
+          "description": "Create utility functions for validating file types (PNG/JPG), checking file size against 10MB limit, and returning user-friendly error messages"
+        },
+        {
+          "path": "frontend/src/pages/ConvertPage.tsx",
+          "operation": "create",
+          "description": "Create main conversion page that orchestrates the note conversion workflow starting with ImageUpload component, wrapped with ProtectedRoute to ensure authentication"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for ConvertPage at /convert path, wrap with ProtectedRoute to require authentication, and integrate Layout component for consistent styling"
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Integrate Tesseract.js for client-side OCR to extract structured text from uploaded screenshots",
+      "acceptanceCriteria": [
+        "Tesseract.js successfully extracts text from uploaded images",
+        "Extracted text is structured into headings, paragraphs, lists, and tables",
+        "OCR processing shows loading indicator during extraction",
+        "Extracted text is editable before conversion"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/services/ocrService.ts",
+          "operation": "create",
+          "description": "Create OCR service that integrates Tesseract.js for client-side text extraction, structures extracted content into headings/paragraphs/lists/tables, and provides progress callbacks for loading indicators"
+        },
+        {
+          "path": "frontend/src/components/TextEditor.tsx",
+          "operation": "create",
+          "description": "Create editable text editor component that displays extracted OCR text with structure preservation and allows user modifications before handwriting conversion"
+        },
+        {
+          "path": "frontend/src/hooks/useOCR.ts",
+          "operation": "create",
+          "description": "Create custom hook for managing OCR processing state, handling Tesseract.js initialization, tracking extraction progress, and managing extracted text data"
+        },
+        {
+          "path": "frontend/src/pages/ConvertPage.tsx",
+          "operation": "modify",
+          "description": "Integrate OCR processing workflow after image upload, display TextEditor component with extracted text, and manage processing state transitions"
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build handwriting rendering engine with randomized character variations for realistic handwritten appearance",
+      "acceptanceCriteria": [
+        "Text renders with handwriting-style fonts (not standard fonts)",
+        "Each character has randomized spacing within natural bounds",
+        "Letters rotate slightly (-2° to +2°) for organic appearance",
+        "Baseline shifts create natural handwriting flow",
+        "Stroke thickness varies subtly across characters"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/services/handwritingRenderer.ts",
+          "operation": "create",
+          "description": "Create handwriting rendering engine using Canvas API that applies handwriting fonts, randomizes character spacing, applies rotation between -2° and +2° to each character, varies baseline positions, and adjusts stroke thickness for realistic handwritten appearance"
+        },
+        {
+          "path": "frontend/src/utils/handwritingVariations.ts",
+          "operation": "create",
+          "description": "Create utility functions for generating randomized character transformations including spacing variations, rotation angles, baseline shifts, and stroke thickness adjustments within natural bounds"
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement handwriting customization UI for ink colors and paper backgrounds",
+      "acceptanceCriteria": [
+        "User can select ink color (blue or black)",
+        "User can choose paper background (ruled, graph, or with margins)",
+        "Selected styles are previewed before final PDF generation",
+        "Customization choices persist during the session"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/StyleCustomizer.tsx",
+          "operation": "create",
+          "description": "Create customization UI component with ink color selector (blue/black), paper background options (ruled/graph/margin), live preview of selections, and session persistence using sessionStorage. Reference generated paper textures from frontend/public/assets/generated/notebook-texture.dim_1200x1600.png"
+        },
+        {
+          "path": "frontend/src/types/handwritingStyles.ts",
+          "operation": "create",
+          "description": "Define TypeScript types for ink colors, paper backgrounds, and handwriting style configurations"
+        },
+        {
+          "path": "frontend/src/pages/ConvertPage.tsx",
+          "operation": "modify",
+          "description": "Integrate StyleCustomizer component into conversion workflow after text editing, pass selected styles to handwriting renderer and PDF generator"
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Create image region detection to segment diagrams and images from text regions",
+      "acceptanceCriteria": [
+        "Canvas API identifies distinct image/diagram regions",
+        "Text regions are separated from graphical content",
+        "Detection works reliably on typical screenshot layouts",
+        "Segmentation prepares images for sketch conversion"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/services/imageSegmentation.ts",
+          "operation": "create",
+          "description": "Create image segmentation service using Canvas API to detect and separate diagram/image regions from text regions through pixel analysis, contour detection, and region classification"
+        },
+        {
+          "path": "frontend/src/utils/regionDetection.ts",
+          "operation": "create",
+          "description": "Create utility functions for analyzing image regions, detecting boundaries between text and graphical content, and classifying region types"
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Build image-to-sketch conversion pipeline with edge detection and pencil texture effects",
+      "acceptanceCriteria": [
+        "Images are converted to grayscale successfully",
+        "Edge detection highlights key boundaries and features",
+        "Adaptive thresholding creates sketch-like appearance",
+        "Digital colors are removed completely",
+        "Gaussian noise adds hand-drawn texture",
+        "Pencil texture overlay enhances sketch realism"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/services/sketchConverter.ts",
+          "operation": "create",
+          "description": "Create sketch conversion pipeline using Canvas API that converts images to grayscale, applies Canny-style edge detection, uses adaptive thresholding, removes digital colors, adds Gaussian noise, and overlays pencil texture from frontend/public/assets/generated/pencil-texture.dim_800x800.png for hand-drawn appearance"
+        },
+        {
+          "path": "frontend/src/utils/imageFilters.ts",
+          "operation": "create",
+          "description": "Create utility functions for image processing filters including grayscale conversion, edge detection algorithms, adaptive thresholding, noise generation, and texture overlay operations"
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement A4 PDF generation at 300 DPI with handwritten text and sketch images",
+      "acceptanceCriteria": [
+        "PDF is generated at A4 dimensions (210mm x 297mm)",
+        "Output resolution is 300 DPI for print quality",
+        "Handwritten text and sketch images are embedded correctly",
+        "Text wraps naturally across multiple pages when needed",
+        "Multi-page documents maintain consistent formatting"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/services/pdfGenerator.ts",
+          "operation": "create",
+          "description": "Create PDF generation service using jsPDF that creates A4 documents at 300 DPI, embeds handwritten text renderings and converted sketch images, handles multi-page layout with proper text wrapping, and maintains consistent formatting across pages"
+        },
+        {
+          "path": "frontend/src/utils/pdfLayout.ts",
+          "operation": "create",
+          "description": "Create utility functions for PDF layout calculations including A4 dimensions, 300 DPI resolution conversion, page breaks, text wrapping logic, and content positioning"
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create PDF preview screen with download functionality",
+      "acceptanceCriteria": [
+        "Generated PDF is rendered in preview before download",
+        "Preview shows all pages with navigation",
+        "Download button triggers file save to local device",
+        "Downloaded file is named meaningfully (e.g., 'scriptify_notes_[timestamp].pdf')"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PDFPreview.tsx",
+          "operation": "create",
+          "description": "Use the blob-storage component to save generated PDFs. Create PDF preview component that renders generated PDF with page navigation, provides download button with timestamp-based filename generation, handles file saving to local device, integrates useSaveNote hook to save PDF to backend with upload progress indicator. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/utils/fileDownload.ts",
+          "operation": "create",
+          "description": "Create utility functions for generating timestamp-based filenames and triggering browser file downloads"
+        },
+        {
+          "path": "frontend/src/hooks/useSaveNote.ts",
+          "operation": "create",
+          "description": "Use the blob-storage component to save generated PDFs. Create custom hook that converts generated PDF to ExternalBlob using ExternalBlob.fromBytes(), tracks upload progress with withUploadProgress(), calls saveNote backend method with note metadata, and provides mutation state management. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ConvertPage.tsx",
+          "operation": "modify",
+          "description": "Integrate PDFPreview component as final step in conversion workflow, pass generated PDF data, and handle post-save navigation to history page"
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Integrate Internet Identity authentication with secure session management",
+      "acceptanceCriteria": [
+        "Users can authenticate using Internet Identity",
+        "Authentication state persists across sessions",
+        "Unauthenticated users cannot access note conversion features",
+        "Sign-out functionality works correctly"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LoginButton.tsx",
+          "operation": "create",
+          "description": "Use the authorization component to provide Internet Identity authentication. Create login button component following authorization component's usage instructions with login/logout handling, authentication state management, and query cache clearing on logout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetup.tsx",
+          "operation": "create",
+          "description": "Use the authorization component to manage user profiles. Create profile setup modal that prompts first-time users for their name, uses getCallerUserProfile and saveCallerUserProfile methods, and prevents modal flash using proper loading state checks. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useAuth.ts",
+          "operation": "create",
+          "description": "Use the authorization component to manage authentication state. Create custom hook that wraps useInternetIdentity, provides authentication status, and manages user profile state. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProtectedRoute.tsx",
+          "operation": "create",
+          "description": "Use the authorization component to protect routes. Create route guard component that checks authentication status and redirects unauthenticated users away from conversion features. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap authenticated routes with ProtectedRoute component, integrate ProfileSetup modal for first-time user setup, and add LoginButton to navigation"
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Create note history interface displaying user's previously converted notes",
+      "acceptanceCriteria": [
+        "User can view list of their previously converted notes",
+        "Each entry shows filename and creation date",
+        "History loads from backend note storage",
+        "Interface is accessible after authentication"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/NoteHistory.tsx",
+          "operation": "create",
+          "description": "Use the blob-storage component to display stored note PDFs. Create note history component that fetches user's notes using getAllNotesOfUserSortedByTimestamp method, displays list with filenames and timestamps, and uses ExternalBlob.getDirectURL() for PDF access. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useNotes.ts",
+          "operation": "create",
+          "description": "Use the blob-storage component to manage note data. Create custom hook for fetching note history using React Query, managing note list state, and handling ExternalBlob PDF references. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HistoryPage.tsx",
+          "operation": "create",
+          "description": "Create history page that displays NoteHistory component and handles note list rendering with timestamps and PDF preview capabilities"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for HistoryPage at /history path with ProtectedRoute guard, and add navigation link in Layout component for accessing note history"
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Design cohesive visual theme with warm colors and notebook-inspired aesthetics",
+      "acceptanceCriteria": [
+        "UI uses warm color palette that complements handwritten note theme",
+        "Typography choices reflect notebook aesthetic",
+        "Interface includes subtle paper texture or stationery-inspired elements",
+        "Design maintains consistency across all screens"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global styles with warm color palette (avoiding blue/purple), notebook-inspired typography, and paper texture background references using frontend/public/assets/generated/notebook-texture.dim_1200x1600.png and frontend/public/assets/generated/app-icon.dim_512x512.png"
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind configuration with custom warm color palette, handwriting-inspired font families, and stationery-themed design tokens"
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create layout component that wraps application content with consistent notebook-themed styling, paper texture backgrounds, and warm color scheme applied throughout"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with Layout component to ensure consistent theme application across all pages"
+        }
+      ]
+    }
+  ]
+}

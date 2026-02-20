@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Kalam:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    
+    /* Warm amber/orange palette for notebook theme */
+    --background: 0.98 0.015 45;
+    --foreground: 0.25 0.04 35;
+    
+    --card: 1 0.01 45;
+    --card-foreground: 0.25 0.04 35;
+    
+    --popover: 1 0.01 45;
+    --popover-foreground: 0.25 0.04 35;
+    
+    --primary: 0.55 0.12 40;
+    --primary-foreground: 0.98 0.01 45;
+    
+    --secondary: 0.95 0.02 45;
+    --secondary-foreground: 0.35 0.06 35;
+    
+    --muted: 0.95 0.02 45;
+    --muted-foreground: 0.55 0.05 40;
+    
+    --accent: 0.92 0.03 50;
+    --accent-foreground: 0.35 0.06 35;
+    
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.01 45;
+    
+    --border: 0.88 0.03 45;
+    --input: 0.88 0.03 45;
+    --ring: 0.55 0.12 40;
+    
+    --chart-1: 0.65 0.15 35;
+    --chart-2: 0.70 0.12 50;
+    --chart-3: 0.60 0.18 25;
+    --chart-4: 0.75 0.10 60;
+    --chart-5: 0.55 0.20 15;
+  }
+
+  .dark {
+    --background: 0.20 0.02 35;
+    --foreground: 0.95 0.01 45;
+    
+    --card: 0.25 0.03 35;
+    --card-foreground: 0.95 0.01 45;
+    
+    --popover: 0.22 0.03 35;
+    --popover-foreground: 0.95 0.01 45;
+    
+    --primary: 0.85 0.08 45;
+    --primary-foreground: 0.25 0.04 35;
+    
+    --secondary: 0.30 0.03 35;
+    --secondary-foreground: 0.95 0.01 45;
+    
+    --muted: 0.30 0.03 35;
+    --muted-foreground: 0.65 0.04 40;
+    
+    --accent: 0.35 0.04 40;
+    --accent-foreground: 0.95 0.01 45;
+    
+    --destructive: 0.60 0.20 25;
+    --destructive-foreground: 0.95 0.01 45;
+    
+    --border: 1 0 0 / 10%;
+    --input: 1 0 0 / 15%;
+    --ring: 0.65 0.06 40;
+    
+    --chart-1: 0.70 0.15 40;
+    --chart-2: 0.75 0.12 55;
+    --chart-3: 0.65 0.18 30;
+    --chart-4: 0.80 0.10 65;
+    --chart-5: 0.60 0.20 20;
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Kalam', 'Patrick Hand', 'Caveat', cursive, system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Caveat', 'Patrick Hand', cursive, system-ui, sans-serif;
+  }
+}

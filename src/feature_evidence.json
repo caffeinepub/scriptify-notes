@@ -1,0 +1,204 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-image-upload-interface-that-accepts-png-and-jpg-screenshot-files-with-maximum-file-size-of-10mb-and-validates-file-types-before-upload",
+      "featureTitle": "Implement image upload interface that accepts PNG and JPG screenshot files with maximum file size of 10MB and validates file types before upload",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ImageUpload.tsx",
+        "frontend/src/pages/ConvertPage.tsx",
+        "frontend/src/utils/fileValidation.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-integrate-tesseract-js-for-client-side-ocr-to-extract-text-from-uploaded-screenshots-returning-structured-data-including-headings-paragraphs-lists-and-tables",
+      "featureTitle": "Integrate Tesseract.js for client-side OCR to extract text from uploaded screenshots, returning structured data including headings, paragraphs, lists, and tables",
+      "files": [
+        "frontend/src/components/TextEditor.tsx",
+        "frontend/src/hooks/useOCR.ts",
+        "frontend/src/pages/ConvertPage.tsx",
+        "frontend/src/services/ocrService.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-handwriting-rendering-engine-that-converts-extracted-text-into-realistic-handwritten-style-with-randomized-character-spacing-letter-rotation-between-2-and-2-baseline-shift-variations-and-stroke-thickness-changes",
+      "featureTitle": "Build handwriting rendering engine that converts extracted text into realistic handwritten style with randomized character spacing, letter rotation between -2° and +2°, baseline shift variations, and stroke thickness changes",
+      "files": [
+        "frontend/src/services/handwritingRenderer.ts",
+        "frontend/src/utils/handwritingVariations.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-handwriting-customization-ui-allowing-users-to-choose-between-blue-and-black-ink-colors-and-select-paper-backgrounds-including-ruled-paper-graph-paper-and-margin-lines",
+      "featureTitle": "Implement handwriting customization UI allowing users to choose between blue and black ink colors, and select paper backgrounds including ruled paper, graph paper, and margin lines",
+      "files": [
+        "frontend/src/components/StyleCustomizer.tsx",
+        "frontend/src/pages/ConvertPage.tsx",
+        "frontend/src/types/handwritingStyles.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a4-pdf-generation-at-300-dpi-using-jspdf-or-pdf-lib-that-combines-handwritten-text-rendering-and-converted-sketch-images-with-proper-multi-page-support-and-line-wrapping",
+      "featureTitle": "Implement A4 PDF generation at 300 DPI using jsPDF or pdf-lib that combines handwritten text rendering and converted sketch images with proper multi-page support and line wrapping",
+      "files": [
+        "frontend/src/services/pdfGenerator.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-pdf-preview-screen-that-displays-the-generated-pdf-before-download-and-includes-a-download-button-for-saving-the-file-locally",
+      "featureTitle": "Create PDF preview screen that displays the generated PDF before download and includes a download button for saving the file locally",
+      "files": [
+        "frontend/src/components/PDFPreview.tsx",
+        "frontend/src/pages/ConvertPage.tsx",
+        "frontend/src/utils/fileDownload.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-integrate-internet-identity-authentication-for-user-sign-in-replacing-google-sign-in-while-maintaining-secure-user-sessions",
+      "featureTitle": "Integrate Internet Identity authentication for user sign-in, replacing Google Sign-In while maintaining secure user sessions",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/LoginButton.tsx",
+        "frontend/src/components/ProfileSetup.tsx",
+        "frontend/src/components/ProtectedRoute.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-note-history-interface-that-displays-user-s-previously-converted-notes-with-filenames-and-creation-timestamps",
+      "featureTitle": "Create note history interface that displays user's previously converted notes with filenames and creation timestamps",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/NoteHistory.tsx",
+        "frontend/src/pages/HistoryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-a-cohesive-visual-theme-with-warm-creative-colors-avoiding-blue-and-purple-notebook-inspired-typography-and-paper-texture-elements-that-reflect-the-handwritten-note-aesthetic-throughout-the-application-interface",
+      "featureTitle": "Design a cohesive visual theme with warm, creative colors (avoiding blue and purple), notebook-inspired typography, and paper texture elements that reflect the handwritten note aesthetic throughout the application interface",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

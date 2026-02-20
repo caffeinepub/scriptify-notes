@@ -1,0 +1,230 @@
+{
+  "kind": "build_request",
+  "title": "Build Scriptify Notes - Web-based handwritten note converter",
+  "projectName": "Scriptify Notes",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement image upload interface that accepts PNG and JPG screenshot files with maximum file size of 10MB and validates file types before upload",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can select and upload PNG or JPG files",
+        "File size validation rejects files larger than 10MB",
+        "Invalid file types are rejected with clear error messages",
+        "Upload interface shows file preview before processing"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Integrate Tesseract.js for client-side OCR to extract text from uploaded screenshots, returning structured data including headings, paragraphs, lists, and tables",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Tesseract.js successfully extracts text from uploaded images",
+        "Extracted text is structured into headings, paragraphs, lists, and tables",
+        "OCR processing shows loading indicator during extraction",
+        "Extracted text is editable before conversion"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build handwriting rendering engine that converts extracted text into realistic handwritten style with randomized character spacing, letter rotation between -2° and +2°, baseline shift variations, and stroke thickness changes",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Text renders with handwriting-style fonts (not standard fonts)",
+        "Each character has randomized spacing within natural bounds",
+        "Letters rotate slightly (-2° to +2°) for organic appearance",
+        "Baseline shifts create natural handwriting flow",
+        "Stroke thickness varies subtly across characters"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement handwriting customization UI allowing users to choose between blue and black ink colors, and select paper backgrounds including ruled paper, graph paper, and margin lines",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can select ink color (blue or black)",
+        "User can choose paper background (ruled, graph, or with margins)",
+        "Selected styles are previewed before final PDF generation",
+        "Customization choices persist during the session"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Create image region detection using Canvas API to segment diagram and image areas from text regions in uploaded screenshots",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Canvas API identifies distinct image/diagram regions",
+        "Text regions are separated from graphical content",
+        "Detection works reliably on typical screenshot layouts",
+        "Segmentation prepares images for sketch conversion"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Build image-to-sketch conversion pipeline using Canvas API that converts detected images to grayscale, applies Canny-style edge detection, applies adaptive threshold, removes digital colors, adds Gaussian noise, and overlays pencil texture to create hand-drawn appearance",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Images are converted to grayscale successfully",
+        "Edge detection highlights key boundaries and features",
+        "Adaptive thresholding creates sketch-like appearance",
+        "Digital colors are removed completely",
+        "Gaussian noise adds hand-drawn texture",
+        "Pencil texture overlay enhances sketch realism"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement A4 PDF generation at 300 DPI using jsPDF or pdf-lib that combines handwritten text rendering and converted sketch images with proper multi-page support and line wrapping",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "PDF is generated at A4 dimensions (210mm x 297mm)",
+        "Output resolution is 300 DPI for print quality",
+        "Handwritten text and sketch images are embedded correctly",
+        "Text wraps naturally across multiple pages when needed",
+        "Multi-page documents maintain consistent formatting"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create PDF preview screen that displays the generated PDF before download and includes a download button for saving the file locally",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated PDF is rendered in preview before download",
+        "Preview shows all pages with navigation",
+        "Download button triggers file save to local device",
+        "Downloaded file is named meaningfully (e.g., 'scriptify_notes_[timestamp].pdf')"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Integrate Internet Identity authentication for user sign-in, replacing Google Sign-In while maintaining secure user sessions",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can authenticate using Internet Identity",
+        "Authentication state persists across sessions",
+        "Unauthenticated users cannot access note conversion features",
+        "Sign-out functionality works correctly"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Build backend note storage system in Motoko that stores note metadata including user ID, filename, creation timestamp, and associates generated PDFs with user accounts",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each note record includes user ID, filename, and timestamp",
+        "Notes are associated with authenticated users",
+        "Backend provides query method to retrieve user's note history",
+        "Note metadata is stored persistently in canister stable memory"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Create note history interface that displays user's previously converted notes with filenames and creation timestamps",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can view list of their previously converted notes",
+        "Each entry shows filename and creation date",
+        "History loads from backend note storage",
+        "Interface is accessible after authentication"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Design a cohesive visual theme with warm, creative colors (avoiding blue and purple), notebook-inspired typography, and paper texture elements that reflect the handwritten note aesthetic throughout the application interface",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI uses warm color palette that complements handwritten note theme",
+        "Typography choices reflect notebook aesthetic",
+        "Interface includes subtle paper texture or stationery-inspired elements",
+        "Design maintains consistency across all screens"
+      ]
+    }
+  ],
+  "constraints": [
+    "Maximum upload file size must be enforced at 10MB",
+    "Only PNG and JPG file formats are accepted for upload",
+    "All image processing must occur client-side using JavaScript/Canvas API",
+    "PDF generation must use client-side libraries (jsPDF or pdf-lib) only",
+    "Authentication must use Internet Identity, not Google OAuth",
+    "Backend must use Motoko single-actor architecture",
+    "Do not modify frontend immutable paths (useInternetIdentity.ts, useActor.ts, main.tsx, components/ui)"
+  ],
+  "nonGoals": [
+    "Google Drive API integration or cloud storage uploads",
+    "Native mobile app development (Flutter, React Native, iOS, Android)",
+    "Server-side image processing with Python, OpenCV, or HuggingFace models",
+    "PostgreSQL or external database integration",
+    "Google Vision API or cloud-based OCR services",
+    "Automated cloud deployment to AWS, Railway, or Render",
+    "SMS notifications or external messaging integrations"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Notebook paper texture background with subtle ruled lines for handwriting rendering (notebook-texture.dim_1200x1600.png)",
+      "Pencil sketch texture overlay for image-to-sketch conversion effect (pencil-texture.dim_800x800.png)",
+      "Application icon featuring a stylized handwritten note or pen illustration (app-icon.dim_512x512.png)"
+    ],
+    "edits": []
+  }
+}
